@@ -30,7 +30,7 @@ bool Push(SqStack &s,ElemType x){
 }
 //出栈
 bool Pop(SqStack &s,ElemType &x){
-    if(s.top==-1){
+    if(StackEmpty(s)){
         return false;
     }
     x=s.data[s.top--];
@@ -38,7 +38,7 @@ bool Pop(SqStack &s,ElemType &x){
 }
 //获取栈顶元素
 bool GetTop(SqStack s,ElemType &x){
-    if(s.top==-1){
+    if(StackEmpty(s)){
         return false;
     }
     x=s.data[s.top];
