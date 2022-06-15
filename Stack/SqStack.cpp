@@ -1,3 +1,9 @@
+//
+// @author: Christinlj
+// @date: 2022/6/15 10:07
+// @description: 栈-顺序存储
+//
+
 #include"../header/SqStack.h"
 
 //初始化
