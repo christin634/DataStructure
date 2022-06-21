@@ -50,6 +50,7 @@ void InOrder(BiTree root){
  * ② 读取栈顶元素：
  *      若栈顶元素右孩子不空且未访问过，右子树转①；
  *      否则，弹出栈顶元素，并访问。
+ * 每次出栈访问一个结点就相当于遍历完以该结点为根的子树，需将p置为nullptr
  * @param root
  */
 void PostOrder(BiTree root){
