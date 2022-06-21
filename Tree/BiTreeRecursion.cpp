@@ -33,6 +33,15 @@ void PostOrder(BiTree root){
     }
 }
 
+int getDepth(BiTree root){
+    if(!root){
+        return 0;
+    }
+    int ldepth = getDepth(root->lchild);
+    int rdepth = getDepth(root->rchild);
+    return ldepth>rdepth?ldepth+1:rdepth+1;
+}
+
 int main()
 {
     BiTree root;
@@ -43,5 +52,6 @@ int main()
     InOrder(root);
     cout<<endl<<"PostOrder:";
     PostOrder(root);
+    cout<<endl<<"Depth:"<<getDepth(root)<<endl;
     return 0;
 }

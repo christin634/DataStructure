@@ -44,5 +44,6 @@ void InOrder(BiTree root);
 //后序遍历
 void PostOrder(BiTree root);
 
-
+//获得深度
+int getDepth(BiTree root);
 #endif //CLION_BITREE_H

@@ -95,6 +95,27 @@ void LayerTraverse(BiTree root){
     }
 }
 
+int getDepth(BiTree root){
+    if(!root)   return 0;   //空树
+    queue<BiTNode*> q;
+    BiTNode *last=root,*p;    //last指向当前层最右结点,初始为第一层的根结点
+    int depth=0;
+    q.push(root);   //根结点入队
+    while(!q.empty()){
+        p=q.front();    //出队
+        q.pop();
+        if(p->lchild)   //左孩子入队
+            q.push(p->lchild);
+        if(p->rchild)   //右孩子入队
+            q.push(p->rchild);
+        if(p==last){//当前结点为该层最右结点
+            depth++;    //层数+1
+            last=q.back();  //最后结点改为下一层结点的最右结点，即为队列最后一个元素
+        }
+    }
+    return depth;
+}
+
 int main() {
     BiTree root;
     CreateBiTreePreOrder(root);
@@ -106,6 +127,7 @@ int main() {
     LayerTraverse(root);
     cout<<endl<<"PostOrder:";
     PostOrder(root);
+    cout<<endl<<"Depth:"<<getDepth(root);
     return 0;
 }
 //ABD##E##C##
