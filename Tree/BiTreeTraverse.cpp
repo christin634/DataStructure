@@ -44,7 +44,14 @@ void InOrder(BiTree root){
     }
 }
 
-//后序遍历
+/**
+ * 后序遍历
+ * ① 根节点入栈，沿着左孩子，依次入栈，直至左孩子为空；
+ * ② 读取栈顶元素：
+ *      若栈顶元素右孩子不空且未访问过，右子树转①；
+ *      否则，弹出栈顶元素，并访问。
+ * @param root
+ */
 void PostOrder(BiTree root){
     stack<BiTNode*> s;
     auto p = root;
