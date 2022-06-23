@@ -1,7 +1,7 @@
 //
 // @author: Christinlj
 // @date: 2022/6/23 15:08
-// @description: 无向图-邻接表
+// @description: 图-邻接表
 //
 
 #include "../header/ALGraph.h"
@@ -17,7 +17,6 @@ int LocateVex(ALGraph G,VertexType v){
 
 //创建无向图
 void CreateUDG(ALGraph &G){
-    G.graphKind=UDG;
     cout<<"Please input the number of vertex and arc:";
     cin>>G.vexnum>>G.arcnum;
     cout<<"Please input information about "<<G.vexnum<<" vertexs:";
@@ -39,6 +38,28 @@ void CreateUDG(ALGraph &G){
         p2->adjvex=y;
         p2->nextarc=G.vertices[x].firstarc;
         G.vertices[x].firstarc=p2;
+    }
+}
+//创建有向图
+void CreateDG(ALGraph &G){
+    cout<<"Please input the number of vertex and arc:";
+    cin>>G.vexnum>>G.arcnum;
+    cout<<"Please input information about "<<G.vexnum<<" vertexs:";
+    for(auto i=0;i<G.vexnum;i++){
+        cin>>G.vertices[i].data;
+        G.vertices[i].firstarc= nullptr;    //初始化表头结点的指针
+    }
+    cout<<"Please input arc's imformation:\n";
+    //输入内容为两个结点信息
+    VertexType v1,v2;
+    for(auto i=0;i<G.arcnum;i++){
+        cin>>v1>>v2;
+        auto x= LocateVex(G,v1),y= LocateVex(G,v2);
+        auto p=new ArcNode;
+        //将结点p插入到边表头部
+        p->adjvex=y;
+        p->nextarc=G.vertices[x].firstarc;
+        G.vertices[x].firstarc=p;
     }
 }
 
@@ -148,7 +169,17 @@ void DFS_Non_RC(ALGraph G,int v){
 
 int main(){
     ALGraph G;
-    CreateUDG(G);
+    int graphKind;
+    cout<<"Choose to create what kind of graph:\n";
+    cout<<"0.Directed Graph\n1.Undirected Graph\n";
+    cin>>graphKind;
+    switch(graphKind){
+        case DG:
+            CreateDG(G);break;
+        case UDG:
+            CreateUDG(G);break;
+        default:break;
+    }
     cout<<"AdjList:\n";
     Print(G);
     cout<<"BFS:\n";
