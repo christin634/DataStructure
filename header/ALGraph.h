@@ -36,8 +36,16 @@ typedef struct {
 
 //创建无向图
 void CreateUDG(ALGraph &G);
-
 //找到顶点在定点表中的位置，若无返回-1
-int LocateVex(ALGraph &G,VertexType v);
-
+int LocateVex(ALGraph G,VertexType v);
+//找到顶点v的第一个邻接点，返回索引，无则返回-1
+int FirstNeighbor(ALGraph G,int v);
+//找到顶点v的在w之后的邻接点，返回索引，无则返回-1
+int NextNeighbor(ALGraph G,int v,int w);
+//BFS搜索图G
+void BFSTraverse(ALGraph G);
+//BFS搜索图G,从顶点v(v为索引)开始
+void BFS(ALGraph G,int v);
+//访问顶点v
+void visit(ALGraph G,int v);
 #endif //CLION_ALGRAPH_H

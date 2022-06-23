@@ -5,9 +5,9 @@
 //
 
 #include "../header/ALGraph.h"
-
+#include<queue>
 //找到顶点在定点表中的位置，若无返回-1
-int LocateVex(ALGraph &G,VertexType v){
+int LocateVex(ALGraph G,VertexType v){
     for(auto i=0;i<G.vexnum;i++)
         if(v==G.vertices[i].data)
             return i;
@@ -60,9 +60,60 @@ void Print(ALGraph G){
     }
 }
 
+//找到顶点v的第一个邻接点，返回索引，无则返回-1
+int FirstNeighbor(ALGraph G,int v){
+    return G.vertices[v].firstarc== nullptr?-1:G.vertices[v].firstarc->adjvex;
+}
+//找到顶点v的在w之后的邻接点，返回索引，无则返回-1
+int NextNeighbor(ALGraph G,int v,int w){
+    auto p=G.vertices[v].firstarc;
+    for(;p!= nullptr;p=p->nextarc){
+        if(w==p->adjvex){
+            break;
+        }
+    }
+    p=p->nextarc;
+    return p==nullptr?-1:p->adjvex;
+}
+bool visited[MAX_VERTEX_NUM];   //访问标记数组
+//BFS搜索图G
+void BFSTraverse(ALGraph G){
+    for(auto i=0;i<G.vexnum;i++)
+        visited[i]= false;
+    for(auto i=0;i<G.vexnum;i++)
+        if(!visited[i])
+            BFS(G,i);
+}
+//BFS搜索图G,从顶点v(v为索引)开始
+void BFS(ALGraph G,int v){
+    queue<int> q;
+    visit(G,v);
+    visited[v]= true;
+    q.push(v);
+    while(!q.empty()){
+        //顶点出列
+        v = q.front();
+        q.pop();
+        //访问v的所有邻接点
+        for(auto w= FirstNeighbor(G,v);w>=0;w= NextNeighbor(G,v,w))
+            if (!visited[w]) {
+                visit(G, w);
+                visited[w] = true;
+                q.push(w);
+            }
+    }
+}
+//访问顶点v
+void visit(ALGraph G,int v){
+    cout<<G.vertices[v].data<<' ';
+}
+
 int main(){
     ALGraph G;
     CreateUDG(G);
+    cout<<"AdjList:\n";
     Print(G);
+    cout<<"BFS:\n";
+    BFSTraverse(G);
     return 0;
 }

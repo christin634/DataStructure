@@ -25,8 +25,16 @@ typedef struct {
 
 //创建无向图
 void CreateUDG(AMGraph &G);
-
 //找到顶点在定点表中的位置，若无返回-1
-int LocateVex(AMGraph &G,VertexType v);
-
+int LocateVex(AMGraph G,VertexType v);
+//找到顶点v的第一个邻接点，返回索引，无则返回-1
+int FirstNeighbor(AMGraph G,int v);
+//找到顶点v的在w之后的邻接点，返回索引，无则返回-1
+int NextNeighbor(AMGraph G,int v,int w);
+//BFS搜索图G
+void BFSTraverse(AMGraph G);
+//BFS搜索图G,从顶点v(v为索引)开始
+void BFS(AMGraph G,int v);
+//访问顶点v
+void visit(AMGraph G,int v);
 #endif //CLION_AMGRAPH_H
