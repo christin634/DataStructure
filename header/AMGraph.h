@@ -41,4 +41,6 @@ void visit(AMGraph G,int v);
 void DFSTraverse(AMGraph G);
 //DFS搜索图G,从顶点v(v为索引)开始
 void DFS(AMGraph G,int v);
+//从v开始，非递归DFS
+void DFS_Non_RC(AMGraph G,int v);
 #endif //CLION_AMGRAPH_H

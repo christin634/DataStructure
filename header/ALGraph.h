@@ -52,4 +52,6 @@ void visit(ALGraph G,int v);
 void DFSTraverse(ALGraph G);
 //DFS搜索图G,从顶点v(v为索引)开始
 void DFS(ALGraph G,int v);
+//从v开始，非递归DFS
+void DFS_Non_RC(ALGraph G,int v);
 #endif //CLION_ALGRAPH_H

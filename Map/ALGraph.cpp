@@ -6,6 +6,7 @@
 
 #include "../header/ALGraph.h"
 #include<queue>
+#include<stack>
 //找到顶点在定点表中的位置，若无返回-1
 int LocateVex(ALGraph G,VertexType v){
     for(auto i=0;i<G.vexnum;i++)
@@ -125,6 +126,26 @@ void DFS(ALGraph G,int v){
             DFS(G,w);
 }
 
+//从v开始，非递归DFS
+void DFS_Non_RC(ALGraph G,int v){
+    //访问标记数组，记录是否已经入过栈
+    for(auto i=0;i<G.vexnum;i++)
+        visited[i]= false;
+    stack<int> stack;
+    stack.push(v);
+    visited[v]= true;
+    while(!stack.empty()){
+        auto p=stack.top();
+        stack.pop();    //出栈后访问
+        visit(G,p);
+        for(auto w= FirstNeighbor(G,p);w>=0;w= NextNeighbor(G,p,w))
+            if(!visited[w]){//未入过栈的，先入栈
+                stack.push(w);
+                visited[w]= true;
+            }
+    }
+}
+
 int main(){
     ALGraph G;
     CreateUDG(G);
@@ -134,5 +155,7 @@ int main(){
     BFSTraverse(G);
     cout<<"\nDFS:\n";
     DFSTraverse(G);
+    cout<<"\nNon_Recursion_DFS:\n";
+    DFS_Non_RC(G,0);
     return 0;
 }
