@@ -57,6 +57,7 @@ void CreateHuffmanTree(HuffmanTree &ht,vector<unsigned int> w){
     }
     int s1,s2;
     for(auto i=n+1;i<=m;i++){   //建赫夫曼树
+        //选两个权值最小且parent=0的结点
         Select(ht,i-1,s1,s2);
         ht[s1].parent=ht[s2].parent=i;
         ht[i].lchild=s1;
@@ -72,12 +73,13 @@ void CreateHuffmanTree(HuffmanTree &ht,vector<unsigned int> w){
  * @param n 结点数
  */
 void HuffmanCoding(HuffmanTree &ht,vector<string> &hc,int n){
-    hc = vector<string>(n+1,string(n,'\0'));
+    hc = vector<string>(n+1,string());
     string cd(n,'\0');
     int start,i,j,p;
     for(i=1;i<=n;i++){
         start=n-1;  //每个编码结束符位置
         for(j=i,p=ht[i].parent;p!=0;j=p,p=ht[p].parent){//从叶子到根逆向
+            //ht[j]若是左孩子，则编码为0，反之为1
             if(ht[p].lchild==j) cd[--start]='0';
             else    cd[--start]='1';
         }
