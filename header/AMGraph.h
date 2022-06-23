@@ -17,7 +17,6 @@ typedef char VertexType;    //顶点数据类型
 typedef int ArcType;   //带权图中边上权值数据类型
 
 typedef struct {
-    GraphKind graphKind;    //图类型
     VertexType vexs[MAX_VERTEX_NUM];   //顶点表
     ArcType arcs[MAX_VERTEX_NUM][MAX_VERTEX_NUM];  //邻接矩阵--边表
     int vexnum,arcnum;  //当前顶点数和边数
