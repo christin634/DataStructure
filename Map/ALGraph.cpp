@@ -108,6 +108,23 @@ void visit(ALGraph G,int v){
     cout<<G.vertices[v].data<<' ';
 }
 
+//DFS搜索图G
+void DFSTraverse(ALGraph G){
+    for(auto i=0;i<G.vexnum;i++)
+        visited[i]= false;
+    for(auto i=0;i<G.vexnum;i++)
+        if(!visited[i])
+            DFS(G,i);
+}
+//DFS搜索图G,从顶点v(v为索引)开始
+void DFS(ALGraph G,int v){
+    visit(G,v);
+    visited[v]= true;
+    for(auto w= FirstNeighbor(G,v);w>=0;w= NextNeighbor(G,v,w))
+        if(!visited[w])
+            DFS(G,w);
+}
+
 int main(){
     ALGraph G;
     CreateUDG(G);
@@ -115,5 +132,7 @@ int main(){
     Print(G);
     cout<<"BFS:\n";
     BFSTraverse(G);
+    cout<<"\nDFS:\n";
+    DFSTraverse(G);
     return 0;
 }

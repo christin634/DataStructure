@@ -48,4 +48,8 @@ void BFSTraverse(ALGraph G);
 void BFS(ALGraph G,int v);
 //访问顶点v
 void visit(ALGraph G,int v);
+//DFS搜索图G
+void DFSTraverse(ALGraph G);
+//DFS搜索图G,从顶点v(v为索引)开始
+void DFS(ALGraph G,int v);
 #endif //CLION_ALGRAPH_H

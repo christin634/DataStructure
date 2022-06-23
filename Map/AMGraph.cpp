@@ -100,6 +100,23 @@ void visit(AMGraph G,int  v){
     cout<<G.vexs[v]<<' ';
 }
 
+//DFS搜索图G
+void DFSTraverse(AMGraph G){
+    for(auto i=0;i<G.vexnum;i++)
+        visited[i]= false;
+    for(auto i=0;i<G.vexnum;i++)
+        if(!visited[i])
+            DFS(G,i);
+}
+//DFS搜索图G,从顶点v(v为索引)开始
+void DFS(AMGraph G,int v){
+    visit(G,v);
+    visited[v]= true;
+    for(auto w= FirstNeighbor(G,v);w>=0;w= NextNeighbor(G,v,w))
+        if(!visited[w])
+            DFS(G,w);
+}
+
 int main() {
     AMGraph G;
     CreateUDG(G);
@@ -107,5 +124,7 @@ int main() {
     Print(G);
     cout<<"BFS:\n";
     BFSTraverse(G);
+    cout<<"\nDFS:\n";
+    DFSTraverse(G);
     return 0;
 }
