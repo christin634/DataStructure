@@ -108,7 +108,7 @@ int main() {
     MSTree T;
     CreateUDN(G);
     VertexType v;
-    cout<<"Input from which vertext start:";
+    cout<<"Input from which vertex start:";
     cin>>v;
     Prim(G,T,v);
     return 0;
