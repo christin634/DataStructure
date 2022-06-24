@@ -53,21 +53,22 @@ bool visited[MAX_VERTEX_NUM];   //标记数组,已加入T中的标记为true
  */
 void Select(AMGraph G,MSTree T,int &x,int &y){
     //符合条件的边加入map(边的权值，(x,y))
-    //map自动按照键值从小到大排序
-    map<int,map<int,int>> map;
+    //multimap自动按照键值从小到大排序
+    //pain为边(x,y)
+    multimap<int,pair<int,int>> map;
     while(T.vexnum--){
         for(auto i=0;i<G.vexnum;i++){
             if(visited[i]){//从在T内的顶点开始找
                 for(auto j=0;j<G.vexnum;j++){
                     if(!visited[j]&&G.arcs[i][j]!=INFINITY){//另一个顶点不在T内
-                        map[G.arcs[i][j]]={{i,j}};
+                        map.insert({G.arcs[i][j], {i,j}});
                     }
                 }
             }
         }
     }
-    x=map.begin()->second.begin()->first;
-    y=map.begin()->second.begin()->second;
+    x=map.begin()->second.first;
+    y=map.begin()->second.second;
 }
 /**
  * Prim算法
