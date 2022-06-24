@@ -74,9 +74,9 @@ void Select(AMGraph G,MSTree T,int &x,int &y){
  * Prim算法
  * @param G 图
  * @param T 最小生成树
- * @param start 开始顶点序号
+ * @param v 开始顶点
  */
-void Prim(AMGraph G,MSTree &T,int start){
+void Prim(AMGraph G,MSTree &T,VertexType v){
     for(auto i=0;i<G.vexnum;i++)
         visited[i]= false;
     for(auto i=0;i<G.vexnum;i++)
@@ -85,6 +85,7 @@ void Prim(AMGraph G,MSTree &T,int start){
         for(auto j=0;j<G.vexnum;j++){
             T.arcs[i][j]=INFINITY;
         }
+    int start= LocateVex(G,v);
     T.weight=0;
     //序号为start的顶点加入MST
     T.vexnum=1;
@@ -106,6 +107,9 @@ int main() {
     AMGraph G;
     MSTree T;
     CreateUDN(G);
-    Prim(G,T,0);
+    VertexType v;
+    cout<<"Input from which vertext start:";
+    cin>>v;
+    Prim(G,T,v);
     return 0;
 }
