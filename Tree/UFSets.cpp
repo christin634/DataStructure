@@ -25,7 +25,7 @@ int Find(int s[],int x){
 void Union(int s[],int r1,int r2){
     int fx1 = Find(s,r1),fx2 = Find(s,r2);
     if(fx1!=fx2){//不相交则合并
-        s[r2]=r1;
+        s[fx2]=fx1;
     }
 }
 
