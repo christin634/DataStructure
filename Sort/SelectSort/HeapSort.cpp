@@ -2,6 +2,7 @@
 // @author: Christinlj
 // @date: 2022/6/25 19:32
 // @description: 堆排序--大根堆
+// a[1]-a[n],完全二叉树
 //
 
 #include<iostream>

@@ -2,6 +2,7 @@
 // @author: Christinlj
 // @date: 2022/6/25 16:45
 // @description: 希尔排序
+// a[1]-a[n],a[0]为辅助单元
 //
 
 #include<iostream>

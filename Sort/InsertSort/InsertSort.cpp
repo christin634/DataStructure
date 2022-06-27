@@ -2,6 +2,7 @@
 // @author: Christinlj
 // @date: 2022/6/25 15:56
 // @description: 直接插入排序,折半插入排序
+// a[1]-a[n],a[0]为哨兵
 //
 
 #include<iostream>
