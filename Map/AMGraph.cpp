@@ -49,7 +49,7 @@ void CreateDG(AMGraph &G){
             G.arcs[i][j]=0;
         }
     cout<<"Please input arc's imformation:\n";
-    //输入内容为两个结点,同一条边无需输入两次
+    //输入内容为两个结点
     VertexType v1,v2;
     for(auto i=0;i<G.arcnum;i++){
         cin>>v1>>v2;
