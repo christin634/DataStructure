@@ -46,7 +46,7 @@ bool GetTop(SqStack s,ElemType &x){
 }
 //销毁
 void DestroyStack(SqStack &s){
-    delete s.data;
+    delete[] s.data;
     s.top=-1;
 }
 

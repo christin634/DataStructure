@@ -84,7 +84,7 @@ bool Empty(SqList L){
 
 //销毁顺序表
 void DestroyList(SqList &L){
-    delete L.data;
+    delete[] L.data;
     L.length=0;
 }
 
