@@ -64,7 +64,7 @@ void PostOrder(BiTree root){
         }
         else{//右
             p=s.top();  //读栈顶结点，不弹出
-            if(p->lchild&&p->rchild!=r){//右子树存在且未访问过，向右
+            if(p->rchild&&p->rchild!=r){//右子树存在且未访问过，向右
                 p=p->rchild;
             }
             else{//否则，弹出结点并访问
